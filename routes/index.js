@@ -1,14 +1,12 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const app = express();
 
-const userRouter = require('user'); // Chemin vers votre fichier de routes
+const userRouter = require('./user'); // Chemin vers votre fichier de routes
 
-app.use('/users', userRouter); // Montez le routeur sur le chemin '/users'
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', {
-    content: 'Welcome to the home page!',
-  })
-})
+app.use('/', userRouter); // Montez le routeur sur le chemin '/'
 
-module.exports = router
+// Autres configurations et middleware
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
